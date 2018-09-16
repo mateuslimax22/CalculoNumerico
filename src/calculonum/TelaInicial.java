@@ -8,7 +8,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
    
     public TelaInicial() {
-        initComponents();       //carrega os compoentes da tela
+       initComponents();       //carrega os compoentes da tela
     }
 
     @SuppressWarnings("unchecked")

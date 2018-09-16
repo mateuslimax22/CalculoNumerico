@@ -12,7 +12,7 @@ public class NewRap extends javax.swing.JFrame {
 
    
   public NewRap() {
-        initComponents();
+       initComponents();
   }
   
     public void isolamento(double a){ //Função que recebe um double para calcular o isolamento

@@ -11,7 +11,7 @@ public class Bissecao extends javax.swing.JFrame {
 
      
     public Bissecao() {
-        initComponents();
+       initComponents();
     }
     
     public void isolamento(double a){ //Função que recebe um double para calcular o isolamento

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Secante extends javax.swing.JFrame {
 
     public Secante() {
-        initComponents();
+       initComponents();
     }
     
     public void isolamento(double a){ //Função que recebe um double para calcular o isolamento
