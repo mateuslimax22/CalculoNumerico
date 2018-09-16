@@ -19,29 +19,36 @@ public class NewRap extends javax.swing.JFrame {
      
          for(int x =-20;x<21;x++){   //Testa os valores  -20 a 20 na função                              
             double f=(a*Math.pow(2.71828182846, x))-(4*Math.pow(x, 2));
-            PrintNewR.append(String.format("f(%d): %.10f\n",x,f));//Printa na tela os valores
+            PrintNewR.append(String.format("f(%d): %.10f\n",x,f));  //Printa na tela os valores
          } 
     }
    
     public void NewR(double max,double A,double y,double E){
  
-        double fA,dfA,dfC;
-        fA=funcao(A,y); 
+        double fA,dfA,dfC;//inicialização de variavel
+        fA=funcao(A,y);  //Calcula a função com o valor da variavel A;
         int k=0;
-    
+        ArrayList<Double> DF = new ArrayList<Double>();//Cria vetor para armazenar as derivadas 
         ArrayList<Double> ER = new ArrayList<Double>();//Criar vetor dinâmico para receber os valores das raizes para calcular os erros 
-        double s1,s2,s3;    //inicialização de variavel
-    
+        double s1,s2,s3,d1;    //inicialização de variavel
+        
         while(Math.abs(fA) > E && k < max) { 
             fA=funcao(A,y); 
             dfA=dfuncao(A);
-            A=A-(fA/dfA);
-            ER.add(A);  //Adiciona os valores das raizes no vetor dinâmico ER
+            DF.add(dfA);  //Adiciona os valores das derivadas no vetor dinâmico DF
+            d1=DF.get(DF.size()-1);//Pega o valor da ultima derivada
+            
+            if(Math.abs(dfA) > 0.00001){//Se |f '(xk )|>λ calcula com f´xk
+                A=A-(fA/dfA);}
+            else{   //Se não calcula com o resultado da ultima derivada 
+                A=A-(fA/d1);
+            }
+            ER.add(A);  //Adiciona os valores das raizes no vetor dinâmico ER 
             k++;
       
-        PrintNewR.append(String.format("\t\tInteração%d\n A=%2f\n fA=%.10f\n ",k,A,fA));
+        PrintNewR.append(String.format("\t\tInteração%d\n A=%2f\n fA=%.10f\n ",k,A,fA));    //Printa na tela os valores
         
-        PrintNewR.append(String.format("\n Raiz parcial = %.10f\n\n",A));
+        PrintNewR.append(String.format("\n Raiz parcial = %.10f\n\n",A));   //Printa na tela os valores 
         }
      
 //*****************Calcular erro relativo**************************************
@@ -53,7 +60,7 @@ public class NewRap extends javax.swing.JFrame {
              PrintNewR.append(String.format("\n %d erro relativo = %.10f \n\n",n,s3));//Printar os valores na tela
          }
 
-        PrintNewR.append(String.format("\n\t\t  Convergiu! %2f ",A));
+        PrintNewR.append(String.format("\n\t\t  Convergiu! %2f ",A));   //Printa na tela os valores 
     }
 
   //********************Interface gráfica*************************************
